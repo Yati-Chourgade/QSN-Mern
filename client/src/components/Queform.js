@@ -23,7 +23,11 @@ const Queform = () => {
 const PostQues = async (e)=>{
   e.preventDefault()
 
-  const {qsn,subject,difficulty }= userq
+   if (checkForBadWord(userq)) {
+      console.log('Bad word found');
+      window.alert('Bad word found')
+    } else{
+        const {qsn,subject,difficulty }= userq
 
  const resp = await fetch('/queform',{
   method:"POST",
@@ -45,7 +49,8 @@ const PostQues = async (e)=>{
   console.log("Submission Successful")
 
   history.push("/dashboard")
- }
+   }
+  }
 }
 
   return (
